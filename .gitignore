@@ -1,0 +1,12 @@
+/target/
+/.build-m2/
+/data/
+*.mv.db
+*.trace.db
+/.idea/
+/.vscode/
+/nbproject/private/
+*.iml
+*.log
+.env
+dependency-reduced-pom.xml

@@ -1,0 +1,21 @@
+CREATE TABLE users(user_id VARCHAR(36) PRIMARY KEY,username VARCHAR(30) UNIQUE NOT NULL,password_hash CHAR(64) NOT NULL,full_name VARCHAR(100) NOT NULL,email VARCHAR(120) UNIQUE NOT NULL,role VARCHAR(20) NOT NULL,active BOOLEAN NOT NULL);
+CREATE TABLE movies(movie_id VARCHAR(36) PRIMARY KEY,title VARCHAR(150) NOT NULL,description VARCHAR(1000) NOT NULL,genre VARCHAR(80) NOT NULL,duration INT NOT NULL,release_date DATE NOT NULL,status VARCHAR(20) NOT NULL,poster_url VARCHAR(500));
+CREATE TABLE cinemas(cinema_id VARCHAR(36) PRIMARY KEY,name VARCHAR(120) NOT NULL,address VARCHAR(255) NOT NULL);
+CREATE TABLE rooms(room_id VARCHAR(36) PRIMARY KEY,cinema_id VARCHAR(36) NOT NULL,room_name VARCHAR(60) NOT NULL,status VARCHAR(20) NOT NULL,FOREIGN KEY(cinema_id) REFERENCES cinemas(cinema_id));
+CREATE TABLE seats(seat_id VARCHAR(36) PRIMARY KEY,room_id VARCHAR(36) NOT NULL,seat_number VARCHAR(10) NOT NULL,type VARCHAR(20) NOT NULL,FOREIGN KEY(room_id) REFERENCES rooms(room_id));
+CREATE TABLE showtimes(showtime_id VARCHAR(36) PRIMARY KEY,movie_id VARCHAR(36) NOT NULL,room_id VARCHAR(36) NOT NULL,start_time TIMESTAMP NOT NULL,end_time TIMESTAMP NOT NULL,status VARCHAR(20) NOT NULL,base_price DECIMAL(12,2) NOT NULL,FOREIGN KEY(movie_id) REFERENCES movies(movie_id),FOREIGN KEY(room_id) REFERENCES rooms(room_id));
+CREATE TABLE showtime_seats(showtime_seat_id VARCHAR(80) PRIMARY KEY,showtime_id VARCHAR(36) NOT NULL,seat_id VARCHAR(36) NOT NULL,status VARCHAR(20) NOT NULL,held_until TIMESTAMP,price DECIMAL(12,2) NOT NULL,version INT NOT NULL,UNIQUE(showtime_id,seat_id),FOREIGN KEY(showtime_id) REFERENCES showtimes(showtime_id),FOREIGN KEY(seat_id) REFERENCES seats(seat_id));
+CREATE TABLE bookings(booking_id VARCHAR(36) PRIMARY KEY,customer_id VARCHAR(36) NOT NULL,showtime_id VARCHAR(36) NOT NULL,booking_time TIMESTAMP NOT NULL,total_amount DECIMAL(12,2) NOT NULL,status VARCHAR(20) NOT NULL,FOREIGN KEY(customer_id) REFERENCES users(user_id),FOREIGN KEY(showtime_id) REFERENCES showtimes(showtime_id));
+CREATE TABLE tickets(ticket_id VARCHAR(36) PRIMARY KEY,booking_id VARCHAR(36) NOT NULL,showtime_seat_id VARCHAR(80) NOT NULL,ticket_code VARCHAR(30) UNIQUE NOT NULL,price DECIMAL(12,2) NOT NULL,status VARCHAR(20) NOT NULL,FOREIGN KEY(booking_id) REFERENCES bookings(booking_id),FOREIGN KEY(showtime_seat_id) REFERENCES showtime_seats(showtime_seat_id));
+CREATE TABLE payments(payment_id VARCHAR(36) PRIMARY KEY,booking_id VARCHAR(36) NOT NULL,amount DECIMAL(12,2) NOT NULL,payment_time TIMESTAMP NOT NULL,method VARCHAR(40) NOT NULL,status VARCHAR(20) NOT NULL,gateway_name VARCHAR(100) NOT NULL,FOREIGN KEY(booking_id) REFERENCES bookings(booking_id));
+CREATE TABLE etickets(eticket_id VARCHAR(36) PRIMARY KEY,ticket_id VARCHAR(36) UNIQUE NOT NULL,qr_code VARCHAR(255) UNIQUE NOT NULL,issue_date TIMESTAMP NOT NULL,status VARCHAR(20) NOT NULL,FOREIGN KEY(ticket_id) REFERENCES tickets(ticket_id));
+
+INSERT INTO users VALUES('customer-1','customer','x','Test Customer','test@example.com','CUSTOMER',TRUE);
+INSERT INTO movies VALUES('movie-1','Test Movie','Description','Action',120,CURRENT_DATE,'NOW_SHOWING','');
+INSERT INTO cinemas VALUES('cinema-1','Test Cinema','Test Address');
+INSERT INTO rooms VALUES('room-1','cinema-1','Room 1','ACTIVE');
+INSERT INTO seats VALUES('seat-a1','room-1','A1','STANDARD');
+INSERT INTO seats VALUES('seat-b1','room-1','B1','VIP');
+INSERT INTO showtimes VALUES('show-1','movie-1','room-1',DATEADD('HOUR',2,CURRENT_TIMESTAMP),DATEADD('HOUR',4,CURRENT_TIMESTAMP),'SCHEDULED',100000);
+INSERT INTO showtime_seats VALUES('ss-a1','show-1','seat-a1','AVAILABLE',NULL,100000,0);
+INSERT INTO showtime_seats VALUES('ss-b1','show-1','seat-b1','AVAILABLE',NULL,140000,0);

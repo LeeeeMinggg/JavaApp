@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<HBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cineticket.desktop.ui.controller.LoginController" styleClass="auth-background">
+    <VBox styleClass="auth-brand" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT">
+        <Label text="CINE•TICKET" styleClass="brand-mark"/>
+        <Region VBox.vgrow="ALWAYS"/>
+        <Label text="Đặt vé xem phim.&#10;Gọn gàng. Nhanh chóng." styleClass="hero-title" wrapText="true"/>
+        <Label text="Ứng dụng desktop JavaFX dành cho khách hàng, nhân viên rạp và quản trị viên." styleClass="hero-subtitle" wrapText="true"/>
+        <Region VBox.vgrow="ALWAYS"/>
+        <Label text="JavaFX • Java OOP • MySQL" styleClass="hero-subtitle"/>
+    </VBox>
+    <StackPane prefWidth="520" minWidth="470">
+        <VBox styleClass="auth-card" maxWidth="390">
+            <Label text="Chào mừng trở lại" styleClass="auth-title"/>
+            <Label text="Đăng nhập để tiếp tục đến CineTicket" styleClass="auth-subtitle"/>
+            <Separator/>
+            <Label text="Tên đăng nhập"/>
+            <TextField fx:id="usernameField" promptText="customer" onAction="#login"/>
+            <Label text="Mật khẩu"/>
+            <PasswordField fx:id="passwordField" promptText="••••••••" onAction="#login"/>
+            <Button text="Đăng nhập" onAction="#login" styleClass="primary-button" maxWidth="Infinity"/>
+            <HBox alignment="CENTER" spacing="6">
+                <Label text="Chưa có tài khoản?" styleClass="muted"/>
+                <Button text="Đăng ký ngay" onAction="#openRegister" styleClass="link-button"/>
+            </HBox>
+            <Label fx:id="databaseStatusLabel" wrapText="true"/>
+            <Label text="Tài khoản demo: customer/customer123 • staff/staff123 • admin/admin123" styleClass="muted" wrapText="true"/>
+        </VBox>
+        <padding><Insets top="40" right="55" bottom="40" left="35"/></padding>
+    </StackPane>
+</HBox>

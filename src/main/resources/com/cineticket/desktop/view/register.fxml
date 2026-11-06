@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<HBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cineticket.desktop.ui.controller.RegisterController" styleClass="auth-background">
+    <VBox styleClass="auth-brand" HBox.hgrow="ALWAYS" alignment="CENTER_LEFT">
+        <Label text="CINE•TICKET" styleClass="brand-mark"/>
+        <Region VBox.vgrow="ALWAYS"/>
+        <Label text="Thành viên mới,&#10;trải nghiệm mới." styleClass="hero-title" wrapText="true"/>
+        <Label text="Tạo tài khoản để chọn ghế, thanh toán mô phỏng và nhận vé QR ngay trên máy tính." styleClass="hero-subtitle" wrapText="true"/>
+        <Region VBox.vgrow="ALWAYS"/>
+    </VBox>
+    <StackPane prefWidth="560" minWidth="500">
+        <VBox styleClass="auth-card" maxWidth="420">
+            <Label text="Tạo tài khoản" styleClass="auth-title"/>
+            <Label text="Các trường dưới đây đều bắt buộc" styleClass="auth-subtitle"/>
+            <TextField fx:id="fullNameField" promptText="Họ và tên"/>
+            <TextField fx:id="emailField" promptText="Email"/>
+            <TextField fx:id="usernameField" promptText="Tên đăng nhập"/>
+            <PasswordField fx:id="passwordField" promptText="Mật khẩu (ít nhất 6 ký tự)"/>
+            <PasswordField fx:id="confirmPasswordField" promptText="Nhập lại mật khẩu" onAction="#register"/>
+            <Button text="Tạo tài khoản" onAction="#register" styleClass="primary-button" maxWidth="Infinity"/>
+            <Button text="← Quay lại đăng nhập" onAction="#backToLogin" styleClass="ghost-button" maxWidth="Infinity"/>
+        </VBox>
+        <padding><Insets top="30" right="55" bottom="30" left="35"/></padding>
+    </StackPane>
+</HBox>

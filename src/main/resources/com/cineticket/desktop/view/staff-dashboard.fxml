@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cineticket.desktop.ui.controller.StaffDashboardController">
+    <top><HBox styleClass="app-header"><Label text="CINE•TICKET OPERATIONS" styleClass="header-brand"/><Region HBox.hgrow="ALWAYS"/>
+        <Button text="Vận hành" onAction="#goHome" styleClass="header-button"/><Label fx:id="userLabel" styleClass="header-user"/><Button text="Đăng xuất" onAction="#logout" styleClass="header-button"/></HBox></top>
+    <center><VBox styleClass="page">
+        <VBox spacing="4"><Label text="KHU VỰC NHÂN VIÊN" styleClass="eyebrow"/><Label text="Quản lý vận hành rạp" styleClass="page-title"/>
+            <Label text="Phim, phòng, ghế và suất chiếu được lưu trực tiếp trong MySQL." styleClass="muted"/></VBox>
+        <TabPane VBox.vgrow="ALWAYS">
+            <Tab text="Quản lý phim" closable="false"><SplitPane dividerPositions="0.62">
+                <VBox spacing="10" styleClass="content-card"><HBox><Label text="Danh sách phim" styleClass="section-title"/><Region HBox.hgrow="ALWAYS"/><Label fx:id="movieCountLabel" styleClass="muted"/></HBox><TableView fx:id="movieTable" VBox.vgrow="ALWAYS"/></VBox>
+                <ScrollPane fitToWidth="true"><VBox spacing="11" styleClass="content-card"><Label text="Thông tin phim" styleClass="section-title"/>
+                    <TextField fx:id="movieTitleField" promptText="Tên phim"/><TextField fx:id="movieGenreField" promptText="Thể loại"/>
+                    <TextField fx:id="movieDurationField" promptText="Thời lượng (phút)"/><DatePicker fx:id="movieReleaseDatePicker" maxWidth="Infinity"/>
+                    <ComboBox fx:id="movieStatusBox" maxWidth="Infinity"/><TextField fx:id="moviePosterField" promptText="Poster URL (không bắt buộc)"/>
+                    <TextArea fx:id="movieDescriptionArea" promptText="Mô tả" prefRowCount="5" wrapText="true"/>
+                    <HBox spacing="8"><Button text="Phim mới" onAction="#newMovie" styleClass="secondary-button"/><Button text="Lưu phim" onAction="#saveMovie" styleClass="primary-button"/></HBox>
+                </VBox></ScrollPane>
+            </SplitPane></Tab>
+            <Tab text="Suất chiếu &amp; phòng" closable="false"><VBox spacing="14" styleClass="content-card">
+                <HBox><Label text="Lịch chiếu sắp tới" styleClass="section-title"/><Region HBox.hgrow="ALWAYS"/><Label fx:id="roomCountLabel" styleClass="muted"/></HBox>
+                <TableView fx:id="showtimeTable" VBox.vgrow="ALWAYS"/>
+                <Label text="Tạo suất chiếu mới" styleClass="section-title"/>
+                <HBox spacing="10"><ComboBox fx:id="showtimeMovieBox" promptText="Chọn phim" prefWidth="250"/><ComboBox fx:id="showtimeRoomBox" promptText="Chọn phòng" prefWidth="270"/>
+                    <DatePicker fx:id="showtimeDatePicker"/><TextField fx:id="showtimeTimeField" promptText="HH:mm" prefWidth="90"/>
+                    <TextField fx:id="showtimePriceField" promptText="Giá Standard" prefWidth="125"/><Button text="Tạo suất chiếu" onAction="#createShowtime" styleClass="primary-button"/></HBox>
+                <Label text="Hệ thống tự tạo ShowtimeSeat cho toàn bộ ghế trong phòng và tính giá Standard/VIP/Couple." styleClass="muted"/>
+            </VBox></Tab>
+        </TabPane>
+    </VBox></center>
+</BorderPane>

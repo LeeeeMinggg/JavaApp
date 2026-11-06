@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cineticket.desktop.ui.controller.CheckoutController">
+    <top><HBox styleClass="app-header"><Label text="CINE•TICKET" styleClass="header-brand"/><Region HBox.hgrow="ALWAYS"/>
+        <Label fx:id="userLabel" styleClass="header-user"/><Button text="Đăng xuất" onAction="#logout" styleClass="header-button"/></HBox></top>
+    <center><HBox styleClass="page" spacing="28" alignment="TOP_CENTER">
+        <VBox spacing="20" HBox.hgrow="ALWAYS" maxWidth="760">
+            <VBox spacing="5"><Label text="BƯỚC CUỐI" styleClass="eyebrow"/><Label text="Thanh toán booking" styleClass="page-title"/>
+                <Label text="Đây là cổng thanh toán MÔ PHỎNG - không có giao dịch tiền thật." styleClass="warning-banner"/></VBox>
+            <VBox styleClass="content-card">
+                <Label text="Phương thức thanh toán" styleClass="section-title"/>
+                <ComboBox fx:id="paymentMethodBox" maxWidth="Infinity"/>
+                <CheckBox fx:id="simulateFailureCheckBox" text="Mô phỏng một giao dịch thất bại để demo nhiều lần thử Payment" wrapText="true"/>
+                <Separator/>
+                <Label text="Trong chế độ demo, hệ thống chỉ ghi trạng thái SUCCESS hoặc FAILED vào MySQL. Không gửi dữ liệu đến ngân hàng, Stripe hay ví điện tử." styleClass="muted" wrapText="true"/>
+            </VBox>
+            <HBox spacing="12"><Button text="Hủy booking" onAction="#cancel" styleClass="danger-button"/><Region HBox.hgrow="ALWAYS"/>
+                <Button text="Xác nhận thanh toán mô phỏng" onAction="#pay" styleClass="primary-button"/></HBox>
+        </VBox>
+        <VBox styleClass="summary-card" prefWidth="350">
+            <HBox><Label text="Đơn hàng" styleClass="section-title"/><Region HBox.hgrow="ALWAYS"/><Label fx:id="bookingCodeLabel" styleClass="muted"/></HBox>
+            <Separator/><Label text="Phim" styleClass="muted"/><Label fx:id="movieLabel" styleClass="movie-title" wrapText="true"/>
+            <Label text="Rạp" styleClass="muted"/><Label fx:id="venueLabel" wrapText="true"/>
+            <Label text="Thời gian" styleClass="muted"/><Label fx:id="timeLabel"/>
+            <Label text="Ghế" styleClass="muted"/><Label fx:id="seatsLabel" styleClass="movie-title"/>
+            <Label fx:id="holdLabel" styleClass="warning-banner" wrapText="true"/>
+            <Region VBox.vgrow="ALWAYS"/><Separator/><Label text="Tổng thanh toán" styleClass="muted"/><Label fx:id="totalLabel" styleClass="amount"/>
+        </VBox>
+    </HBox></center>
+</BorderPane>

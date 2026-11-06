@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cineticket.desktop.ui.controller.AdminDashboardController">
+    <top><HBox styleClass="app-header"><Label text="CINE•TICKET ADMIN" styleClass="header-brand"/><Region HBox.hgrow="ALWAYS"/>
+        <Button text="Dashboard" onAction="#goHome" styleClass="header-button"/><Label fx:id="userLabel" styleClass="header-user"/><Button text="Đăng xuất" onAction="#logout" styleClass="header-button"/></HBox></top>
+    <center><ScrollPane fitToWidth="true" hbarPolicy="NEVER"><VBox styleClass="page">
+        <HBox alignment="CENTER_LEFT"><VBox spacing="4"><Label text="TỔNG QUAN HỆ THỐNG" styleClass="eyebrow"/><Label text="Dashboard quản trị" styleClass="page-title"/></VBox>
+            <Region HBox.hgrow="ALWAYS"/><Button text="Làm mới dữ liệu" onAction="#refresh" styleClass="secondary-button"/></HBox>
+        <GridPane hgap="14" vgap="14">
+            <VBox styleClass="stat-card" GridPane.columnIndex="0"><Label text="Người dùng" styleClass="muted"/><Label fx:id="usersStatLabel" styleClass="stat-value"/></VBox>
+            <VBox styleClass="stat-card" GridPane.columnIndex="1"><Label text="Phim mở bán" styleClass="muted"/><Label fx:id="moviesStatLabel" styleClass="stat-value"/></VBox>
+            <VBox styleClass="stat-card" GridPane.columnIndex="2"><Label text="Suất sắp tới" styleClass="muted"/><Label fx:id="showtimesStatLabel" styleClass="stat-value"/></VBox>
+            <VBox styleClass="stat-card" GridPane.columnIndex="3"><Label text="Booking xác nhận" styleClass="muted"/><Label fx:id="bookingsStatLabel" styleClass="stat-value"/></VBox>
+            <VBox styleClass="stat-card" GridPane.columnIndex="4"><Label text="Vé đã phát hành" styleClass="muted"/><Label fx:id="ticketsStatLabel" styleClass="stat-value"/></VBox>
+            <VBox styleClass="stat-card" GridPane.columnIndex="5"><Label text="Doanh thu" styleClass="muted"/><Label fx:id="revenueStatLabel" styleClass="stat-value"/></VBox>
+            <columnConstraints><ColumnConstraints percentWidth="16.66"/><ColumnConstraints percentWidth="16.66"/><ColumnConstraints percentWidth="16.66"/><ColumnConstraints percentWidth="16.66"/><ColumnConstraints percentWidth="16.66"/><ColumnConstraints percentWidth="16.66"/></columnConstraints>
+        </GridPane>
+        <TabPane prefHeight="470">
+            <Tab text="Tài khoản &amp; phân quyền" closable="false"><VBox spacing="12" styleClass="content-card"><HBox><Label text="Customer / Staff / Admin" styleClass="section-title"/><Region HBox.hgrow="ALWAYS"/>
+                <Button text="Khóa / mở khóa tài khoản" onAction="#toggleUserActive" styleClass="primary-button"/></HBox><TableView fx:id="userTable" VBox.vgrow="ALWAYS"/>
+                <Label text="Không thể khóa chính tài khoản Admin đang đăng nhập." styleClass="muted"/></VBox></Tab>
+            <Tab text="Báo cáo doanh thu" closable="false"><VBox spacing="12" styleClass="content-card"><Label text="Doanh thu chỉ tính Payment SUCCESS; FAILED và REFUNDED bị loại trừ." styleClass="warning-banner"/>
+                <TableView fx:id="revenueTable" VBox.vgrow="ALWAYS"/></VBox></Tab>
+        </TabPane>
+    </VBox></ScrollPane></center>
+</BorderPane>

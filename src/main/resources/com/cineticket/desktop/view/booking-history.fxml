@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cineticket.desktop.ui.controller.BookingHistoryController">
+    <top><HBox styleClass="app-header"><Label text="CINE•TICKET" styleClass="header-brand"/><Region HBox.hgrow="ALWAYS"/>
+        <Button text="Phim" onAction="#goHome" styleClass="header-button"/><Button text="Vé của tôi" onAction="#goHistory" styleClass="header-button"/>
+        <Label fx:id="userLabel" styleClass="header-user"/><Button text="Đăng xuất" onAction="#logout" styleClass="header-button"/></HBox></top>
+    <center><VBox styleClass="page">
+        <HBox alignment="CENTER_LEFT"><VBox spacing="5"><Label text="TÀI KHOẢN" styleClass="eyebrow"/><Label text="Booking và vé của tôi" styleClass="page-title"/></VBox>
+            <Region HBox.hgrow="ALWAYS"/><Button text="Xem vé / thanh toán" onAction="#openTicket" styleClass="primary-button"/>
+            <Button text="Hủy booking" onAction="#cancelBooking" styleClass="danger-button"/></HBox>
+        <StackPane VBox.vgrow="ALWAYS"><TableView fx:id="bookingTable"/><Label fx:id="emptyLabel" text="Bạn chưa có booking nào." styleClass="muted" visible="false"/></StackPane>
+        <Label text="Chọn một dòng để xem vé, tiếp tục thanh toán booking đang chờ hoặc hủy booking." styleClass="muted"/>
+    </VBox></center>
+</BorderPane>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cineticket.desktop.ui.controller.HomeController" styleClass="cinema-dark">
+    <top><HBox styleClass="cinema-nav">
+        <Label text="CINE•TICKET" styleClass="cinema-brand"/><Region HBox.hgrow="ALWAYS"/>
+        <Button text="Trang chủ" onAction="#goHome" styleClass="nav-link-active"/>
+        <Button text="Phim" onAction="#focusMovies" styleClass="nav-link"/>
+        <Button text="Vé của tôi" onAction="#goHistory" styleClass="nav-link"/>
+        <TextField fx:id="searchField" promptText="Tìm phim..." prefWidth="205" onAction="#search" styleClass="dark-search"/>
+        <Label fx:id="userLabel" styleClass="nav-user"/><Button text="Đăng xuất" onAction="#logout" styleClass="nav-outline"/>
+    </HBox></top>
+    <center><ScrollPane fx:id="pageScroll" fitToWidth="true" hbarPolicy="NEVER" styleClass="dark-scroll"><VBox>
+        <StackPane prefHeight="470" minHeight="430" maxHeight="500">
+            <ImageView fx:id="heroImage" fitHeight="500" preserveRatio="false" StackPane.alignment="CENTER"/>
+            <Region styleClass="hero-scrim"/>
+            <VBox spacing="16" maxWidth="560" StackPane.alignment="CENTER_LEFT" styleClass="hero-copy">
+                <Label text="PHIM NỔI BẬT" styleClass="hero-kicker"/>
+                <Label text="DUNE: PART TWO" styleClass="cinema-hero-title" wrapText="true"/>
+                <Label text="Paul Atreides hợp lực cùng Chani và người Fremen trên hành trình báo thù, đối mặt với lựa chọn định đoạt số phận vũ trụ." styleClass="cinema-hero-description" wrapText="true"/>
+                <HBox spacing="12"><Button text="Mua vé ngay" onAction="#openHeroMovie" styleClass="ticket-button"/><Button text="Xem chi tiết  ›" onAction="#openHeroMovie" styleClass="hero-outline-button"/></HBox>
+            </VBox>
+        </StackPane>
+        <VBox fx:id="movieSection" spacing="20" styleClass="cinema-content">
+            <HBox styleClass="date-strip" spacing="0">
+                <VBox styleClass="date-pill-active"><Label text="Hôm nay"/><Label text="06 Tháng 11" styleClass="date-small"/></VBox>
+                <VBox styleClass="date-pill"><Label text="Ngày mai"/><Label text="07 Tháng 11" styleClass="date-small"/></VBox>
+                <VBox styleClass="date-pill"><Label text="Thứ Bảy"/><Label text="08 Tháng 11" styleClass="date-small"/></VBox>
+                <VBox styleClass="date-pill"><Label text="Chủ Nhật"/><Label text="09 Tháng 11" styleClass="date-small"/></VBox>
+                <VBox styleClass="date-pill"><Label text="Thứ Hai"/><Label text="10 Tháng 11" styleClass="date-small"/></VBox>
+            </HBox>
+            <HBox alignment="CENTER_LEFT"><VBox spacing="3"><Label text="PHIM ĐANG CHIẾU" styleClass="dark-section-title"/><Label fx:id="resultLabel" styleClass="dark-muted"/></VBox><Region HBox.hgrow="ALWAYS"/><Button text="Xem tất cả  ›" onAction="#focusMovies" styleClass="nav-link"/></HBox>
+            <ScrollPane fitToHeight="true" vbarPolicy="NEVER" styleClass="poster-scroll"><HBox fx:id="movieRow" spacing="20"/></ScrollPane>
+            <Label text="SẮP RA MẮT" styleClass="dark-section-title"/>
+            <ScrollPane fitToHeight="true" vbarPolicy="NEVER" styleClass="poster-scroll"><HBox fx:id="comingSoonRow" spacing="20"/></ScrollPane>
+            <HBox spacing="18">
+                <VBox styleClass="genre-card"><Label text="✦" styleClass="genre-icon"/><Label text="Hành động" styleClass="genre-name"/><Label text="Phim gay cấn và mãn nhãn" styleClass="dark-muted"/></VBox>
+                <VBox styleClass="genre-card"><Label text="◉" styleClass="genre-icon"/><Label text="Hoạt hình" styleClass="genre-name"/><Label text="Dành cho cả gia đình" styleClass="dark-muted"/></VBox>
+                <VBox styleClass="genre-card"><Label text="♥" styleClass="genre-icon"/><Label text="Tình cảm" styleClass="genre-name"/><Label text="Những câu chuyện cảm xúc" styleClass="dark-muted"/></VBox>
+            </HBox>
+        </VBox>
+        <HBox styleClass="cinema-footer"><Label text="CINE•TICKET" styleClass="cinema-brand"/><Region HBox.hgrow="ALWAYS"/><Label text="Đặt vé nhanh • Thanh toán mô phỏng • Đồ án học tập" styleClass="dark-muted"/></HBox>
+    </VBox></ScrollPane></center>
+</BorderPane>

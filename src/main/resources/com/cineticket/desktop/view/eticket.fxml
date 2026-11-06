@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cineticket.desktop.ui.controller.ETicketController">
+    <top><HBox styleClass="app-header"><Label text="CINE•TICKET" styleClass="header-brand"/><Region HBox.hgrow="ALWAYS"/>
+        <Button text="Phim" onAction="#goHome" styleClass="header-button"/><Button text="Vé của tôi" onAction="#goHistory" styleClass="header-button"/>
+        <Label fx:id="userLabel" styleClass="header-user"/><Button text="Đăng xuất" onAction="#logout" styleClass="header-button"/></HBox></top>
+    <center><ScrollPane fitToWidth="true" hbarPolicy="NEVER"><VBox styleClass="page" alignment="TOP_CENTER">
+        <VBox spacing="7" alignment="CENTER"><Label fx:id="statusLabel" styleClass="success-badge"/><Label text="Đặt vé thành công" styleClass="page-title"/>
+            <Label text="Xuất trình mã QR ở quầy soát vé" styleClass="muted"/></VBox>
+        <HBox styleClass="content-card" spacing="34" maxWidth="920" alignment="CENTER">
+            <VBox spacing="14" HBox.hgrow="ALWAYS">
+                <Label text="E-TICKET" styleClass="eyebrow"/><Label fx:id="movieLabel" styleClass="page-title" wrapText="true"/>
+                <Separator/><Label text="Rạp / phòng" styleClass="muted"/><Label fx:id="venueLabel" styleClass="movie-title"/>
+                <Label text="Thời gian" styleClass="muted"/><Label fx:id="timeLabel" styleClass="movie-title"/>
+                <Label fx:id="bookingCodeLabel" styleClass="muted"/><ListView fx:id="ticketList" prefHeight="150"/>
+            </VBox>
+            <VBox spacing="10" alignment="CENTER"><ImageView fx:id="qrImage" fitWidth="240" fitHeight="240" preserveRatio="true"/>
+                <Label text="Mã được tạo cục bộ sau khi Payment SUCCESS" styleClass="muted" wrapText="true" maxWidth="250"/></VBox>
+        </HBox>
+        <HBox spacing="12"><Button text="Về trang phim" onAction="#goHome" styleClass="primary-button"/><Button text="Xem tất cả booking" onAction="#goHistory" styleClass="secondary-button"/></HBox>
+    </VBox></ScrollPane></center>
+</BorderPane>

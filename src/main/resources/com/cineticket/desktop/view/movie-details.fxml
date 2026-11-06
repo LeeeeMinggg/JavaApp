@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cineticket.desktop.ui.controller.MovieDetailsController" styleClass="cinema-dark">
+    <top><HBox styleClass="cinema-nav">
+        <Label text="CINE•TICKET" styleClass="cinema-brand"/><Region HBox.hgrow="ALWAYS"/>
+        <Button text="Trang chủ" onAction="#goHome" styleClass="nav-link"/><Button text="Vé của tôi" onAction="#goHistory" styleClass="nav-link"/>
+        <Label fx:id="userLabel" styleClass="nav-user"/><Button text="Đăng xuất" onAction="#logout" styleClass="nav-outline"/>
+    </HBox></top>
+    <center><ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="dark-scroll"><VBox spacing="24" styleClass="detail-page">
+        <Button text="‹  Tất cả phim" onAction="#back" styleClass="dark-back-button"/>
+        <HBox spacing="42" alignment="TOP_LEFT">
+            <VBox styleClass="detail-poster-frame"><ImageView fx:id="posterImage" fitWidth="300" fitHeight="430" preserveRatio="false"/></VBox>
+            <VBox spacing="16" HBox.hgrow="ALWAYS">
+                <Label text="ĐANG MỞ BÁN" styleClass="hero-kicker"/><Label fx:id="titleLabel" styleClass="detail-title" wrapText="true"/>
+                <Label fx:id="genreLabel" styleClass="detail-genre"/><Label fx:id="durationLabel" styleClass="dark-muted"/>
+                <Separator styleClass="dark-separator"/><Label fx:id="descriptionLabel" wrapText="true" maxWidth="720" styleClass="detail-description"/>
+                <Label text="CHỌN SUẤT CHIẾU" styleClass="dark-section-title"/>
+                <VBox fx:id="showtimeList" spacing="10" maxWidth="760"/>
+            </VBox>
+        </HBox>
+    </VBox></ScrollPane></center>
+</BorderPane>

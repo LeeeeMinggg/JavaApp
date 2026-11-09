@@ -23,13 +23,7 @@
             </VBox>
         </StackPane>
         <VBox fx:id="movieSection" spacing="20" styleClass="cinema-content">
-            <HBox styleClass="date-strip" spacing="0">
-                <VBox styleClass="date-pill-active"><Label text="Hôm nay"/><Label text="06 Tháng 11" styleClass="date-small"/></VBox>
-                <VBox styleClass="date-pill"><Label text="Ngày mai"/><Label text="07 Tháng 11" styleClass="date-small"/></VBox>
-                <VBox styleClass="date-pill"><Label text="Thứ Bảy"/><Label text="08 Tháng 11" styleClass="date-small"/></VBox>
-                <VBox styleClass="date-pill"><Label text="Chủ Nhật"/><Label text="09 Tháng 11" styleClass="date-small"/></VBox>
-                <VBox styleClass="date-pill"><Label text="Thứ Hai"/><Label text="10 Tháng 11" styleClass="date-small"/></VBox>
-            </HBox>
+            <HBox fx:id="dateStrip" styleClass="date-strip" spacing="0"/>
             <HBox alignment="CENTER_LEFT"><VBox spacing="3"><Label text="PHIM ĐANG CHIẾU" styleClass="dark-section-title"/><Label fx:id="resultLabel" styleClass="dark-muted"/></VBox><Region HBox.hgrow="ALWAYS"/><Button text="Xem tất cả  ›" onAction="#focusMovies" styleClass="nav-link"/></HBox>
             <ScrollPane fitToHeight="true" vbarPolicy="NEVER" styleClass="poster-scroll"><HBox fx:id="movieRow" spacing="20"/></ScrollPane>
             <Label text="SẮP RA MẮT" styleClass="dark-section-title"/>

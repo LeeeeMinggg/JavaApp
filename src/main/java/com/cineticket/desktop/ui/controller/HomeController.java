@@ -14,9 +14,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.List;
 
 public final class HomeController extends AuthenticatedController {
@@ -27,11 +30,13 @@ public final class HomeController extends AuthenticatedController {
     @FXML private ImageView heroImage;
     @FXML private ScrollPane pageScroll;
     @FXML private VBox movieSection;
+    @FXML private HBox dateStrip;
 
     @FXML private void initialize() {
         initializeHeader();
         heroImage.setImage(MovieArtwork.hero());
         heroImage.fitWidthProperty().bind(pageScroll.widthProperty());
+        renderDateStrip();
         loadMovies();
     }
 
@@ -77,5 +82,34 @@ public final class HomeController extends AuthenticatedController {
     private void openMovie(Movie movie) {
         AppContext.get().viewState().selectedMovie(movie);
         Navigator.show("movie-details.fxml", movie.getTitle());
+    }
+
+    private void renderDateStrip() {
+        LocalDate today = LocalDate.now();
+        dateStrip.getChildren().clear();
+        for (int offset = 0; offset < 5; offset++) {
+            LocalDate date = today.plusDays(offset);
+            String heading = offset == 0 ? "Hôm nay" : offset == 1 ? "Ngày mai" : vietnameseDay(date.getDayOfWeek());
+            Label headingLabel = new Label(heading);
+            Label dateLabel = new Label(String.format("%02d Tháng %02d", date.getDayOfMonth(), date.getMonthValue()));
+            dateLabel.getStyleClass().add("date-small");
+            VBox pill = new VBox(2, headingLabel, dateLabel);
+            pill.getStyleClass().add(offset == 0 ? "date-pill-active" : "date-pill");
+            pill.setMaxWidth(Double.MAX_VALUE);
+            HBox.setHgrow(pill, Priority.ALWAYS);
+            dateStrip.getChildren().add(pill);
+        }
+    }
+
+    private String vietnameseDay(DayOfWeek day) {
+        return switch (day) {
+            case MONDAY -> "Thứ Hai";
+            case TUESDAY -> "Thứ Ba";
+            case WEDNESDAY -> "Thứ Tư";
+            case THURSDAY -> "Thứ Năm";
+            case FRIDAY -> "Thứ Sáu";
+            case SATURDAY -> "Thứ Bảy";
+            case SUNDAY -> "Chủ Nhật";
+        };
     }
 }
